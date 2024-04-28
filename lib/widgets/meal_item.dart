@@ -7,9 +7,11 @@ class MealItem extends StatelessWidget {
   const MealItem({
     super.key,
     required this.meal,
+    required this.onSelectMeal,
   });
 
   final Meal meal;
+  final Function(Meal meal) onSelectMeal;
 
   String get complexityText => meal.complexity.name.toCamelCase();
 
@@ -23,7 +25,9 @@ class MealItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 2,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          onSelectMeal(meal);
+        },
         child: Stack(
           children: [
             FadeInImage(
@@ -39,7 +43,8 @@ class MealItem extends StatelessWidget {
               right: 0,
               child: Container(
                 color: Colors.black54,
-                padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 44),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 6, horizontal: 44),
                 child: Column(
                   children: [
                     Text(
@@ -57,11 +62,20 @@ class MealItem extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        mealItemTrait(Icons.schedule, '${meal.duration} min'),
+                        mealItemTrait(
+                          Icons.schedule,
+                          '${meal.duration} min',
+                        ),
                         const SizedBox(width: 12),
-                        mealItemTrait(Icons.work, meal.complexity.name.toCamelCase()),
+                        mealItemTrait(
+                          Icons.work,
+                          meal.complexity.name.toCamelCase(),
+                        ),
                         const SizedBox(width: 12),
-                        mealItemTrait(Icons.attach_money, meal.affordability.name.toCamelCase()),
+                        mealItemTrait(
+                          Icons.attach_money,
+                          meal.affordability.name.toCamelCase(),
+                        ),
                       ],
                     )
                   ],
