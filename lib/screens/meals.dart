@@ -13,36 +13,7 @@ class Meals extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget content = Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            "Uh oh...  Nothing here!",
-            style: Theme
-                .of(context)
-                .textTheme
-                .headlineLarge!
-                .copyWith(color: Theme
-                .of(context)
-                .colorScheme
-                .onBackground),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'Please try selecting another category',
-            style: Theme
-                .of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(color: Theme
-                .of(context)
-                .colorScheme
-                .onBackground),
-          )
-        ],
-      ),
-    );
+    Widget content = defaultContent(context);
 
     if (meals.isNotEmpty) {
       content = ListView.builder(
@@ -55,10 +26,35 @@ class Meals extends StatelessWidget {
     }
 
     return Scaffold(
-    appBar: AppBar(
-    title: Text(title),
-    ),
-    body: content,
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: content,
+    );
+  }
+
+  Center defaultContent(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "Uh oh...  Nothing here!",
+            style: Theme.of(context)
+                .textTheme
+                .headlineLarge!
+                .copyWith(color: Theme.of(context).colorScheme.onBackground),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Please try selecting another category',
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .copyWith(color: Theme.of(context).colorScheme.onBackground),
+          )
+        ],
+      ),
     );
   }
 }
