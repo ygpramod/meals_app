@@ -13,7 +13,7 @@ class CategoriesScreen extends StatelessWidget {
       builder: (ctx) => Meals(
         title: category.title,
         meals: dummyMeals
-            .where((it) => it.categories.contains(category.id))
+            .where((meal) => meal.categories.contains(category.id))
             .toList(),
       ),
     ));
